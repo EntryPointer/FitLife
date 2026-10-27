@@ -2,57 +2,65 @@
 
 print("Здравствуйте, я фитнес-бот, который будет следить за вашим здоровьем!")
 
-print()  # отступ
+print()  # Отступ
 
 # Проверяем написано ли имя пользователя с прописной буквы или со строчной
-try:
-    user_name = input("Введите своё имя: ")
-    if not user_name.istitle():
-        raise ValueError("Имя введено не с прописной буквы!")
-except ValueError as e:
-    print(f"Возникла ошибка: {e}")
-    exit()
-
+while True:
+    try:
+        user_name = input("Введите своё имя: ")
+        if not user_name.istitle():
+            raise ValueError("Имя введено не с прописной буквы!")
+        break
+    except ValueError as e:
+        print(f"Возникла ошибка: {e}")
 # Проверяем ввел ли пользователь в возраст целое число
-try:
-    user_age = int(input("Введите свой возраст: "))
-except ValueError:
-    print("Возникла ошибка: введите пожалуйста целое числа!")
-    exit()
-
-print()  # отступ
+while True:
+    try:
+        user_age = int(input("Введите свой возраст: "))
+        break
+    except ValueError:
+        print("Возникла ошибка: введите пожалуйста целое числа!")
+print()  # Отступ
 
 print("Теперь соберём параметры вашего тела, чтобы составить рекомендацию!")
 
 # Проверяем правильно ли пользователь указал массу тела
-try:
-    user_weight = float(input("Введите вашу массу тела: "))
-except ValueError:
-    print("Ошибка! Введите пожалуйста число!")
-    exit()
-
+while True:
+    try:
+        user_weight = float(input("Введите вашу массу тела: "))
+        break
+    except ValueError:
+        print("Ошибка! Введите пожалуйста число!")
 # Проверяем правильно ли пользователь указал рост тела
-try:
-    user_height = float(input("Введите ваш рост в метрах, используя точку: "))
-except ValueError:
-    print("Ошибка! Введите пожалуйста число!")
-    exit()
-
-print()  # отступ
+while True:
+    try:
+        user_height = float(input("Введите ваш рост в м, используя точку: "))
+        break
+    except ValueError:
+        print("Ошибка! Введите пожалуйста число!")
+print()  # Отступ
 
 WATER_PER_KG = 30  # стандартная норма воды для человека, единица измерения: мл
+ML_PER_LITER = 1000  # перевод из мл в л
 
 bmi = user_weight / (user_height ** 2)  # индекс массы тела
 bmi_result = round(bmi, 1)  # округленное значение
 
-water_ml = user_weight * 30  # рассчёт нормы воды
-water_l = water_ml / 1000  # перевод из мл в л
+water_ml = user_weight * WATER_PER_KG  # рассчёт нормы воды
+water_l = water_ml / ML_PER_LITER  # перевод из мл в л
 
 # Вывод всей информации на экран
 print(f"Отчет для пользователя: {user_name} ({user_age} г.)")
 print(f"Твой Индекс Массы Тела: {bmi_result}")
 print(f"Рекомендуемая норма воды: {water_l:.2f} л. в день")
+print()  # Отступ
 
-print()  # отступ
+# Пояснение какой индекс, что значит
+print("ИМТ меньше 18.5 — недостаточная масса тела")
+print("ИМТ от 18.5 до 24.9 — нормальная масса тела")
+print("ИМТ от 25 до 29.9 — избыточная масса тела")
+print("ИМТ от 30 — ожирение.")
+
+print()  # Отступ
 
 print("Расчет окончен. Будьте здоровы! ")
