@@ -11,12 +11,14 @@ try:
         raise ValueError("Имя введено не с прописной буквы!")
 except ValueError as e:
     print(f"Возникла ошибка: {e}")
+    exit()
 
 # Проверяем ввел ли пользователь в возраст целое число
 try:
     user_age = int(input("Введите свой возраст: "))
 except ValueError:
     print("Возникла ошибка: введите пожалуйста целое числа!")
+    exit()
 
 print()  # отступ
 
@@ -27,12 +29,14 @@ try:
     user_weight = float(input("Введите вашу массу тела: "))
 except ValueError:
     print("Ошибка! Введите пожалуйста число!")
+    exit()
 
 # Проверяем правильно ли пользователь указал рост тела
 try:
     user_height = float(input("Введите ваш рост в метрах, используя точку: "))
 except ValueError:
     print("Ошибка! Введите пожалуйста число!")
+    exit()
 
 print()  # отступ
 
